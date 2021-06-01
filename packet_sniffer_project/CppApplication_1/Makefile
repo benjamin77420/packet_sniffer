@@ -1,17 +1,15 @@
-# *-*MakeFile*-*
+# *-* MakeFile *-*
+all:packet_sniffer
 
-all: packet_sniffer
-
-.PHONY: all clear
-
-packet_sniffer: main.o packet_sniffer.o
-	gcc main.o packet_sniffer.o -o packet_sniffer -lpcap
+packet_sniffer:main.o packet_sniffer.o
+	gcc main.o packet_sniffer.o -o packet_sniffer
 	
-main.o: main.c packet_sniffer.h
-	gcc  main.c -c -omain.o -lpcap
+main.o:main.c packet_sniffer.h
+	gcc main.c -c
 	
-packet_sniffer.o: packet_sniffer.c packet_sniffer.h
-	gcc  packet_sniffer.c -c -o packet_sniffer.o -lpcap
+packet_sniffer.o:packet_sniffer.c packet_sniffer.h
+	gcc packet_sniffer.c -c 
 	
 clear:
-	rm *.o packet_sniffer
+	rm -f *.o
+    
